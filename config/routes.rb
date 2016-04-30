@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+
   root 'home#land'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :books, only: [:index, :new, :create, :show, :edit, :destroy]
 
   # Example resource route with options:
   #   resources :products do
