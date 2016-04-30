@@ -1,0 +1,28 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+.vcenter {
+  position: relative;
+  top: 50%;  
+  transform: translateY(-50%);
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight: $thin-font-weight;
+  }
+}
+
+.btn-outline {
+  border: 1px solid $light-color;
+  color: $light-color;
+  background-color: transparent;
+  transition: background-color 0.2s ease-in;
+  &:hover{
+    background-color: rgba(255,255,255,0.2);
+    color: $light-color;
+  }
+
+}
