@@ -1,0 +1,5 @@
+te:
+  flash_messages:
+    books:
+      deletion_success: "పుస్తకం విజయవంతంగా తొలగించారు"
+      deletion_error: "పుస్తకం టైటిల్ సరిగా నమోదు చేయనందున తొలగించలేదు"

@@ -18,18 +18,21 @@ class BooksController < ApplicationController
   end
 
   def show
-    flash.now[:success] = "This is a flash message success"
-    flash.now[:danger] = "This is a flash message failure"
-    flash.now[:notice] = "This is a notice flash message"
-    flash.now[:error] = "This is a error flash message"
+    # flash.now[:success] = "This is a flash message success"
+    # flash.now[:danger] = "This is a flash message failure"
+    # flash.now[:notice] = "This is a notice flash message"
+    # flash.now[:error] = "This is a error flash message"
 
   end
 
   def destroy
     if params[:title_confirm].downcase == @book.title.downcase
       @book.destroy
-      redirect_to books_path, success: "Book #{@book.title} successfuly deleted"
+      flash[:success] = I18n.t'flash_messages.books.deletion_success'
+      redirect_to books_path
+           
     else
+      flash[:error] = I18n.t 'flash_messages.books.deletion_error'
       redirect_to book_path(@book)
     end
 
