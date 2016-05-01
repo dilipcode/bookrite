@@ -4,29 +4,8 @@
   <div class="row" id="books">
     <% @books.each do |book| %>
       <div id="book">
-        <h3><%= link_to book.title, book_path(book) %> [<%= link_to "Edit", edit_book_path(book)%>| <%= link_to "Delete", "#",class: "text text-danger", data: {toggle: "modal", target: "#delete-confirmation-modal"} %>]</h3> 
-<!--Delete Modal confirmation-->
-<div class="modal fade" id="delete-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Are you sure you want to delete?</h4>
-      </div>
-      <div class="modal-body">
-        <p>Please enter the title of book you want to delete and press submit</p>
-        <%= form_tag(book_path(book), method: :delete) do  %>
-          <%= text_field_tag(:title_confirm, "#{book.title}", class: "form-control") %>
-          <%= submit_tag("Confirm", class: "btn btn-danger") %>
-            
-        <% end %>
-          
-        ...
-      </div>      
-    </div>
-  </div>
-</div>
-      
+        <h3><%= link_to book.title, book_path(book) %></h3>
+        
       </div>
     <% end %>
   </div>
