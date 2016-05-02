@@ -1,0 +1,11 @@
+<% if @save_success %>
+  $('#new-chapter-form').hide();
+  $('#new-chapter-form-trigger').show();
+  $('#new-chapter-form')[0].reset();
+  $('#chapters-list').append('<li><%= @chapter.title%></li>');
+  
+<% else %>
+
+  $('#new-chapter-form').replaceWith('<%= j render(partial: 'chapters/form', locals: {chapter: @chapter}) %>');
+  ChapterUtils.BindNewChapterCancelLink();
+<% end %>
