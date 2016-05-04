@@ -1,0 +1,35 @@
+<h3>
+  <%= @section.title %>
+    <small>
+      <em>in</em>
+      <%= @chapter.title %>
+    </small>
+</h3>
+
+<%= @section.notes %>
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#section-preview" aria-controls="home" role="tab" data-toggle="tab">Preview</a></li>
+    <li role="presentation"><a href="#section-edit" aria-controls="profile" role="tab" data-toggle="tab">Edit</a></li>
+    
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="section-preview">
+     <%= render 'sections/section_preview' %>     
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="section-edit">
+      <%= simple_form_for [@book,@chapter,@section], remote: true do |f| %>        
+        <%= f.input :content %>
+        <%= f.submit %>
+        <% end %>
+    </div>
+    
+  </div>
+
+</div>

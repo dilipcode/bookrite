@@ -1,10 +1,19 @@
 class SectionsController < ApplicationController
   before_action :fetch_chapter
+  before_action :fetch_section, only: [:update, :show, :destroy]
   
   def create
     @section = @chapter.sections.new(section_params)
     @save_success = @section.save
   end
+
+  def show
+  end
+
+  def update
+    @section.update_attributes(section_params)
+  end
+
 
   private
       def fetch_chapter
@@ -12,7 +21,11 @@ class SectionsController < ApplicationController
         @chapter = @book.chapters.find(params[:chapter_id])
       end
 
+      def fetch_section
+        @section = @chapter.sections.find(params[:id])
+      end
+
       def section_params
-        params.require(:section).permit(:title,:notes)
+        params.require(:section).permit(:title,:notes, :content)
       end
 end

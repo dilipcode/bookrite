@@ -2,7 +2,10 @@
   
 <section id="book" class="row">
   <div id="book-content" class="col-md-8 col-md-push-4">
-    <h3><%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary btn-sm"%> <%= link_to "Delete", "#",class: "btn btn-danger btn-sm", data: {toggle: "modal", target: "#delete-confirmation-modal"} %></h3> 
+    <h3><%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary btn-sm"%> <%= link_to "Delete", "#",class: "btn btn-danger btn-sm", data: {toggle: "modal", target: "#delete-confirmation-modal"} %></h3>
+    <div id="section-content">
+      
+    </div>
         
   </div>
   <div id="sidebar" class="col-md-4 col-md-pull-8">

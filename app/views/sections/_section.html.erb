@@ -2,7 +2,7 @@
   <div id = "<%= dom_id section %>" class = "section clearfix ">
     <%= link_to fa_icon('trash'), "#",method: :delete, remote: true, class: "section-delete text-danger", data: {confirm: "Are you sure you want to delete section #{section.title}?"}%>
     <%= link_to fa_icon('pencil'),"#", remote: true, class: "section-edit" %>
-    <%= link_to section.title,"#", remote: true, class: "section-title"%>
+    <%= link_to section.title,book_chapter_section_path(section.chapter.book, section.chapter,section), remote: true, class: "section-title"%>
   </div>
 
 <% end %>
