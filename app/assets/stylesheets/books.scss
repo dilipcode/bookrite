@@ -5,8 +5,17 @@
 
     .chapter {
       a.chapter-title {
-        display: block;        
+        display: block;
+
+        .fa-caret-right {
+          display: inline-block;
+        } 
+
+        .fa-caret-down {
+          display: none;
+        }   
       }
+
       a.chapter-edit, a.chapter-delete {
         float: right;
         margin-right: 0.5em;
@@ -18,10 +27,29 @@
           visibility: visible;
         }
       }
+
+      &.expanded {
+        a.chapter-title {
+        
+
+          .fa-caret-right {
+            display: none;
+          } 
+
+          .fa-caret-down {
+            display: inline-block;
+          }   
+        }
+
+        .sections {
+          display: block;
+        }
+      }
     }
 
     .sections {
       margin-left: 1em;
+      display: none;
 
       .section {
         a.section-title {
