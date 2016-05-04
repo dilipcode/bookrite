@@ -22,7 +22,7 @@ class BooksController < ApplicationController
     # flash.now[:danger] = "This is a flash message failure"
     # flash.now[:notice] = "This is a notice flash message"
     # flash.now[:error] = "This is a error flash message"
-    @chapters = @book.chapters.all
+    @chapters = @book.chapters.includes(:sections).all
     @new_chapter = @chapters.new
 
 

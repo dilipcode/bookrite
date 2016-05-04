@@ -1,7 +1,28 @@
-<li id = "<%=dom_id chapter %>">
-<%= chapter.title%>
-[
-<%= link_to "Edit", edit_book_chapter_path(chapter.book,chapter), remote: true %>| <%= link_to "Delete",  book_chapter_path(chapter.book,chapter),method: :delete, remote: true, class: "text-danger" %>
-]
-</li>
+<div id = "<%=dom_id chapter %>" class = "chapter clearfix">
+  <%= link_to fa_icon('trash'),  book_chapter_path(chapter.book,chapter),method: :delete, remote: true, class: "chapter-delete text-danger", data: {confirm: "Are you sure you want to delete chapter #{chapter.title}?"}%>
+  <%= link_to fa_icon('pencil'), edit_book_chapter_path(chapter.book,chapter), remote: true, class: "chapter-edit" %>
+  <%= link_to chapter.title, "", remote: true, class: "chapter-title"%>
+
+  <div class="sections-list">
+    <%= render chapter.sections %>
+    <%= link_to "+ Add Section", "#", data: {toggle: "modal", target: "#new-section-modal-#{chapter.id}"} %>  
+  </div>
+</div>
+
+<!--New section Modal confirmation-->
+<div class="modal fade" id="new-section-modal-<%=chapter.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a Section to <%= chapter.title %></h4>
+      </div>
+      <div class="modal-body">
+        <p>section name</p>
+        
+        
+      </div>      
+    </div>
+  </div>
+</div>
 

@@ -1,12 +1,21 @@
+<div class="container">
+  
+<section id="book" class="row">
+  <div id="book-content" class="col-md-8 col-md-push-4">
+    <h3><%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary btn-sm"%> <%= link_to "Delete", "#",class: "btn btn-danger btn-sm", data: {toggle: "modal", target: "#delete-confirmation-modal"} %></h3> 
+        
+  </div>
+  <div id="sidebar" class="col-md-4 col-md-pull-8">
+    <div id = "chapters-list"> 
+      <%= render @chapters %>
+    </div>    
+    <%= link_to "+ Add chapter", "#", id: 'new-chapter-form-trigger'%>
+    <%= render partial:'chapters/form', locals: {chapter: @new_chapter} %>
+  </div>
+</section>
 
-<h3><%= @book.title %> [<%= link_to "Edit", edit_book_path(@book)%>| <%= link_to "Delete", "#",class: "text text-danger", data: {toggle: "modal", target: "#delete-confirmation-modal"} %>]</h3> 
+</div>
 
-<ul id = "chapters-list"> 
-  <%= render @chapters %>
-</ul>
-
-<%= link_to "+ Add chapter", "#", id: 'new-chapter-form-trigger'%>
-<%= render partial:'chapters/form', locals: {chapter: @new_chapter} %>
 
 <!--Delete Modal confirmation-->
 <div class="modal fade" id="delete-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -19,7 +28,7 @@
       <div class="modal-body">
         <p>Please enter the title of book you want to delete and press submit</p>
         <%= form_tag(book_path(@book), method: :delete) do  %>
-          <%= text_field_tag(:title_confirm, "#{@book.title}", class: "form-control") %>
+          <%= text_field_tag(:title_confirm, "", class: "form-control") %>
           <%= submit_tag("Confirm", class: "btn btn-danger") %>
             
         <% end %>
