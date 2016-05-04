@@ -24,6 +24,13 @@ class BooksController < ApplicationController
     # flash.now[:error] = "This is a error flash message"
     @chapters = @book.chapters.includes(:sections).all
     @new_chapter = @chapters.new
+    @new_sections = {}
+    @chapters.each do |chapter|
+      @new_sections[chapter.id] = chapter.sections.new
+    end
+
+
+
 
 
   end

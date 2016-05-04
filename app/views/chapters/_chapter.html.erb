@@ -1,10 +1,12 @@
 <div id = "<%=dom_id chapter %>" class = "chapter clearfix">
   <%= link_to fa_icon('trash'),  book_chapter_path(chapter.book,chapter),method: :delete, remote: true, class: "chapter-delete text-danger", data: {confirm: "Are you sure you want to delete chapter #{chapter.title}?"}%>
   <%= link_to fa_icon('pencil'), edit_book_chapter_path(chapter.book,chapter), remote: true, class: "chapter-edit" %>
-  <%= link_to chapter.title, "", remote: true, class: "chapter-title"%>
+  <%= link_to chapter.title, "#", remote: true, class: "chapter-title"%>
 
-  <div class="sections-list">
-    <%= render chapter.sections %>
+  <div class="sections">
+    <div class="sections-list">
+      <%= render chapter.sections %>
+    </div>
     <%= link_to "+ Add Section", "#", data: {toggle: "modal", target: "#new-section-modal-#{chapter.id}"} %>  
   </div>
 </div>
@@ -18,7 +20,15 @@
         <h4 class="modal-title" id="myModalLabel">Add a Section to <%= chapter.title %></h4>
       </div>
       <div class="modal-body">
-        <p>section name</p>
+        <div class="alert alert-danger hidden" role="alert">
+          <%= t'flash_messages.sections.creation_failure' %>
+        </div>
+        <%= simple_form_for [chapter.book,chapter,@new_sections[chapter.id]], remote: true do |f| %>
+            <%= f.input :title %>
+            <%= f.input :notes %>
+            <%= f.submit class: "btn btn-primary" %>
+        <% end %>          
+        
         
         
       </div>      
