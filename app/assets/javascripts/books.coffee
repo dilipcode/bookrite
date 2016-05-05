@@ -1,17 +1,17 @@
 ChapterSort = 
 
   OrderedChapterIds: ->
-    JSON.stringify
-    $( "#chapters-list" ).sortable( "toArray" ).map (elId) ->
+    JSON.stringify $( "#chapters-list" ).sortable( "toArray" ).map (elId) ->
       elId.split("_")[1]
 
   saveNewSortOrder: ->
     $.ajax
       method: "PUT"
-      url: "/books/#{$("#book")[0].dataset.bookId}/chapters/sort"
+      url: "/books/#{$('#book')[0].dataset.bookId}"
       dataType: "script"
-      data: 
-        chapter_ids: ChapterSort.OrderedChapterIds()
+      data:
+        book:
+          sorted_chapter_ids: ChapterSort.OrderedChapterIds()
 
     
   init: ->

@@ -28,20 +28,21 @@ class BooksController < ApplicationController
     @chapters.each do |chapter|
       @new_sections[chapter.id] = chapter.sections.new
     end
-
-
-
-
-
   end
+
   def edit
 
   end
 
   def update
     if @book.update_attributes(book_params)
-      flash[:success] = I18n.t 'flash_messages.books.updation_success'
-      redirect_to books_path
+      
+      if params[:book][:sorted_chapter_ids]
+        render nothing: true
+      else
+        flash[:success] = I18n.t 'flash_messages.books.updation_success'
+        redirect_to book_path(@book)
+      end
     else
       render :edit
     end
@@ -67,7 +68,7 @@ class BooksController < ApplicationController
       end
 
       def book_params
-        params.require(:book).permit(:title,:notes)
+        params.require(:book).permit(:title, :notes, :sorted_chapter_ids)
       end
 
 end
