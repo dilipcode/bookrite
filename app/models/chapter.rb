@@ -8,6 +8,6 @@ class Chapter < ActiveRecord::Base
 
   private
       def set_position
-        self.position = self.book.chapters[-2].position + 1        
+        self.position = (self.book.chapters[-2].try(:position) || 0) + 1        
       end
 end

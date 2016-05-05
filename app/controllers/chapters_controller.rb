@@ -1,7 +1,7 @@
 class ChaptersController < ApplicationController
   before_action :fetch_book
   before_action :fetch_chapter, only: [:edit,:update,:destroy]
-  
+
   def create
     @chapter = @book.chapters.new(chapter_params)
     @save_success = !!@chapter.save
@@ -30,6 +30,7 @@ class ChaptersController < ApplicationController
   def update
     @chapter.update_attributes(chapter_params)
     @chapter.reload unless @chapter.valid?
+    @new_sections = {@chapter.id => @chapter.sections.new}
   end
 
   def destroy
