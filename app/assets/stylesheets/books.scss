@@ -1,12 +1,27 @@
 #book {
+
+  #sidebar a {
+    color: #888;
+  }
   #chapters-list {
     border-right: 1px solid $dark-color;
     padding-right: 15px;
 
+    .sortable-placeholder {
+      background-color: lighten($primary-color, 20%);
+      height: 2em;
+    }
+
     .chapter {
+
+      padding: 0.4em 0;
       a.chapter-title {
         display: block;
 
+        i.fa-bars {
+          cursor: move;
+          margin-right: 0.3rem;
+        }
         .fa-caret-right {
           display: inline-block;
         } 

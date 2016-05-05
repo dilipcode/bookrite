@@ -2,7 +2,7 @@
   $('#new-chapter-form').hide();
   $('#new-chapter-form-trigger').show();
   $('#new-chapter-form')[0].reset();
-  $('#chapters-list').append('<li><%= @chapter.title%></li>');
+  $('#chapters-list').append('<%= j render @chapter %>');
   
 <% else %>
 
