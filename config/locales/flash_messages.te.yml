@@ -8,3 +8,5 @@ te:
       deletion_failure: "చాప్టర్ లో  సెక్షన్లు వున్నాయి . ముందు సెక్షన్స్ తొలగించండి "
     sections:
       creation_failure: "సెక్షన్ సృష్టించలేదు "
+      deletion_success: "Section successfully deleted"
+      deletion_failure: "Section deletion failed, as you enterd incorrect title"

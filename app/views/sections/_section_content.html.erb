@@ -3,6 +3,7 @@
     <small>
       <em>in</em>
       <%= @chapter.title %>
+      <%= link_to fa_icon('trash'), "#", class: "text-danger", data: {toggle: "modal", target: "#section-delete-confirmation-modal"} %>
     </small>
 </h3>
 
@@ -32,4 +33,27 @@
     
   </div>
 
+</div>
+
+
+<!--Delete Section Modal confirmation-->
+<div class="modal fade" id="section-delete-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Are you sure you want to delete the section?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please enter the title of section you want to delete and press submit</p>
+        <%= form_tag(book_chapter_section_path(@book,@chapter,@section), method: :delete, remote: true) do  %>
+          <%= text_field_tag(:title_confirm, "", class: "form-control") %>
+          <%= submit_tag("Confirm", class: "btn btn-danger") %>
+            
+        <% end %>
+          
+        ...
+      </div>      
+    </div>
+  </div>
 </div>

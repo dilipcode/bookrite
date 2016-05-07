@@ -14,6 +14,18 @@ class SectionsController < ApplicationController
     @section.update_attributes(section_params)
   end
 
+  def destroy
+    if params[:title_confirm].downcase == @section.title.downcase
+      @destroy_success = true
+      @section.destroy
+      flash.now[:success] = I18n.t'flash_messages.sections.deletion_success'
+                 
+    else
+      flash.now[:error] = I18n.t 'flash_messages.sections.deletion_failure'
+      
+    end
+  end
+
 
   private
       def fetch_chapter
