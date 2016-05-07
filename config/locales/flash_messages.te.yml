@@ -4,5 +4,7 @@ te:
       deletion_success: "పుస్తకం విజయవంతంగా తొలగించారు"
       deletion_error: "పుస్తకం టైటిల్ సరిగా నమోదు చేయనందున తొలగించలేదు"
       updation_success: "పుస్తకం విజయవంతంగా సవరించారు"
+    chapters:
+      deletion_failure: "చాప్టర్ లో  సెక్షన్లు వున్నాయి . ముందు సెక్షన్స్ తొలగించండి "
     sections:
       creation_failure: "సెక్షన్ సృష్టించలేదు "

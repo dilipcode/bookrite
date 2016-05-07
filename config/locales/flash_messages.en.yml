@@ -4,6 +4,8 @@ en:
       deletion_success: "Book successfully deleted"
       deletion_error: "Unable to delete as you didn't enter correct title"
       updation_success: "Book succesfully updated"
+    chapters:
+      deletion_failure: "Please delete the sections under this chapter before deleting chapter"
     sections:
       creation_failure: "Section creation failed"  
 

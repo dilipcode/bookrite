@@ -11,6 +11,7 @@ module ApplicationHelper
     #   </div>  
     # <% end %>
     #   end
+    
     str = " "
     flash.each do |fl|
       fl[0] = "success" if fl[0] == "notice" 
