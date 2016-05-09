@@ -28,6 +28,7 @@ group :development do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'annotate'
+  gem 'letter_opener'
 end
 
 group :production do
