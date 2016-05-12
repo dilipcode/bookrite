@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   
 
+
+  authenticated :user do
+  root to: 'books#index', as: :authenticated_root
+  end
   root 'home#land'
+
   devise_for :users
 
   get 'translate' => 'home#translate', as: :translate
