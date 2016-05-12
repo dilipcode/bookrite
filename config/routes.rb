@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
 
 
+  get 'authorships/create'
+
   authenticated :user do
   root to: 'books#index', as: :authenticated_root
   end
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
     resources :chapters, only: [:create, :edit, :update, :destroy] do      
       resources :sections, only: [:create, :show, :update, :edit, :destroy]
     end
+    resources :authorships, only: [:create]
   end
 
   # Example resource route with options:

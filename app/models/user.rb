@@ -4,5 +4,8 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :owned_books, class_name: Book.name, foreign_key: :owner_id
-  
+
+  def contributing_to(bk)
+    Authorship.where(book: bk, invitee: self.id).any?
+  end  
 end

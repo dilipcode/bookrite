@@ -10,3 +10,7 @@ en:
       creation_failure: "Section creation failed"  
       deletion_success: "Section successfully deleted"
       deletion_failure: "Section deletion failed, as you enterd incorrect title"
+    authorships:
+      non_existing_user: "No existing user .Please ask the author to sign up "
+      already_contributor: "This author is already contributing to book or pending acceptance"
+      invite_success: "User invited successfully"

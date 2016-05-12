@@ -1,6 +1,7 @@
 class Book < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
   belongs_to :owner, class_name: User.name
+  has_many :authorships, dependent: :destroy
 
   def sorted_chapter_ids=(ids_array)
       

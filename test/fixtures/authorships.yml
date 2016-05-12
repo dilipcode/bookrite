@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book_id: 
+  invitee_id: 
+  invitor_id: 
+  accepted: false
+
+two:
+  book_id: 
+  invitee_id: 
+  invitor_id: 
+  accepted: false
