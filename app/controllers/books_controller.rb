@@ -68,7 +68,7 @@ class BooksController < ApplicationController
 
   private
       def fetch_book
-        @book =current_user.owned_books.find(params[:id])
+        @book =current_user.authoring_books.find(params[:id])
       end
 
       def book_params

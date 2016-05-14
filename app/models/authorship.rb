@@ -3,7 +3,7 @@ class Authorship < ActiveRecord::Base
   belongs_to :invitee, class_name: User.name
   belongs_to :invitor, class_name: User.name
 
-  attr_accessor :invitee_email, :skip_email_invitation
+  attr_accessor :invitee_email
 
   after_create :send_authorship_invitation_email
 
@@ -14,7 +14,7 @@ class Authorship < ActiveRecord::Base
   private
 
       def send_authorship_invitation_email 
-        return if skip_email_invitation      
+        return if self.invitee.skip_authorship_invitation_email      
         AuthorshipMailer.invite(invitee,self).deliver_now
       end
 
