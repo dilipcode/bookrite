@@ -2,6 +2,10 @@ class Book < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
   belongs_to :owner, class_name: User.name
   has_many :authorships, dependent: :destroy
+  validates :title, presence: true
+  validates :owner, presence: true
+
+  after_create :make_owner_as_author
 
   def sorted_chapter_ids=(ids_array)
       
@@ -16,7 +20,10 @@ class Book < ActiveRecord::Base
       end  
   end
 
-  validates :title, presence: true
-  validates :owner, presence: true
-
+  private
+      def make_owner_as_author
+        invite = self.authorships.new(invitee: self.owner, invitor: self.owner , accepted: true)
+        invite.skip_email_invitation = true
+        invite.save!
+      end
 end

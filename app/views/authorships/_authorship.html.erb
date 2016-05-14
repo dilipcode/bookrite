@@ -1,0 +1,15 @@
+<div id="authorship">
+  <div class="actions pull-right">
+    <%= link_to "Accept", book_authorship_path(authorship.book,authorship),method: :patch, class: "btn btn-success btn-sm" %>
+    <%= link_to "Reject", book_authorship_path(authorship.book,authorship),method: :delete, class: "btn btn-danger btn-sm" %>
+  </div>
+  <h4>
+  <%= authorship.book.title %>
+  </h4>
+  <p><%= authorship.book.notes %></p>
+  <p>
+    Sent by: <%= authorship.invitor.email %> at <%= authorship.created_at.strftime("%v") %>
+  </p>
+  
+</div>
+      
