@@ -6,7 +6,10 @@ class AuthorshipsController < ApplicationController
     if ValidateEmail.validate(invitee_email)
       @invitee = User.where(email: invitee_email).first
       if @invitee.nil?
-        flash.now[:danger] = I18n.t'flash_messages.authorships.non_existing_user'
+        User.invite!({:email => invitee_email}, current_user) do |usr|
+          usr.invited_book = @book
+        end
+        # flash.now[:danger] = I18n.t'flash_messages.authorships.non_existing_user'
       elsif @invitee.contributing_to(@book)
         flash.now[:danger] = I18n.t'flash_messages.authorships.already_contributor'
       else        

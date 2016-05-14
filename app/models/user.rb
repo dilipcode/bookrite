@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :authoring_books, through: :authorships, source: :book
   
 
+  attr_accessor :invited_book
   def contributing_to(bk)
     Authorship.where(book: bk, invitee: self.id).any?
   end  
