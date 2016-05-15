@@ -28,6 +28,11 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    
+    ##############
+    # Authorship #
+    ##############
+
     can :create, Authorship do |authorship|
         user.contributing_to(authorship.book)
     end
@@ -38,5 +43,22 @@ class Ability
     can :destroy, Book do |book|
         book.owner == user
     end
+
+    #########
+    # Book #
+    #########
+
+    can :read, Book do |book|
+        user.contributing_to(book)
+    end
+    can :create, Book do |book|
+        true
+    end
+
+    can [:update, :destroy], Book do |book|
+        book.owner == user
+    end
+
+
   end
 end

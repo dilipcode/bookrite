@@ -6,7 +6,7 @@
 <% end %>
 
 
-<%= link_to "Add a book", new_book_path, class: "btn btn-primary pull-right" %>
+<%= link_to "Add a book", new_book_path, class: "btn btn-primary pull-right" if can? :create, @new_book %>
 <h1>Select a book to contribute</h1>
 <div class="container-fluid">
   <div class="row" id="books">

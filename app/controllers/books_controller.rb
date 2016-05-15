@@ -2,12 +2,14 @@ class BooksController < ApplicationController
   # before_action :authenticate_user!, only: [:index]
   before_action :fetch_book, only: [:show, :destroy, :edit, :update]
   def index
+    @new_book = current_user.owned_books.new
     @books = current_user.authoring_books
     @invitations = current_user.authorship_invitations
   end
 
   def new
     @book= current_user.owned_books.new
+    authorize! :create, @book
   end
 
   def create
@@ -20,6 +22,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    authorize! :show, @book
     # flash.now[:success] = "This is a flash message success"
     # flash.now[:danger] = "This is a flash message failure"
     # flash.now[:notice] = "This is a notice flash message"
@@ -35,10 +38,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-
+    authorize! :update, @book
   end
 
   def update
+    authorize! :update, @book
     if @book.update_attributes(book_params)
       
       if params[:book][:sorted_chapter_ids]
