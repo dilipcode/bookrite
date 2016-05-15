@@ -53,6 +53,10 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    # unless @book.owner == current_user
+    #   return deny_access!
+    # end
+    authorize! :destroy, @book
     if params[:title_confirm].downcase == @book.title.downcase
       @book.destroy
       flash[:success] = I18n.t'flash_messages.books.deletion_success'
