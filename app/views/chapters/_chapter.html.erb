@@ -1,6 +1,6 @@
 <div id = "<%=dom_id chapter %>" class = "chapter clearfix">
-  <%= link_to fa_icon('trash'),  book_chapter_path(chapter.book,chapter),method: :delete, remote: true, class: "chapter-delete text-danger", data: {confirm: "Are you sure you want to delete chapter #{chapter.title}?"}%>
-  <%= link_to fa_icon('pencil'), edit_book_chapter_path(chapter.book,chapter), remote: true, class: "chapter-edit" %>
+  <%= link_to fa_icon('trash'),  book_chapter_path(chapter.book,chapter),method: :delete, remote: true, class: "chapter-delete text-danger", data: {confirm: "Are you sure you want to delete chapter #{chapter.title}?"} if can? :destroy, chapter%>
+  <%= link_to fa_icon('pencil'), edit_book_chapter_path(chapter.book,chapter), remote: true, class: "chapter-edit" if can? :update, chapter%>
   <%= link_to "#", remote: true, class: "chapter-title" do %>
     <%= fa_icon 'bars' %>
     <%= fa_icon 'caret-right' %>
@@ -14,31 +14,35 @@
     <div class="sections-list">
       <%= render chapter.sections %>
     </div>
-    <%= link_to "+ Add Section", "#", data: {toggle: "modal", target: "#new-section-modal-#{chapter.id}"} %>  
+    <%= link_to "+ Add Section", "#", data: {toggle: "modal", target: "#new-section-modal-#{chapter.id}"} if can? :create, @new_sections[chapter.id]%>  
   </div>
 </div>
 
-<!--New section Modal confirmation-->
-<div class="modal fade" id="new-section-modal-<%=chapter.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add a Section to <%= chapter.title %></h4>
-      </div>
-      <div class="modal-body">
-        <div class="alert alert-danger hidden" role="alert">
-          <%= t'flash_messages.sections.creation_failure' %>
+<% if can? :create, @new_sections[chapter.id] %>
+
+  <!--New section Modal confirmation-->
+  <div class="modal fade" id="new-section-modal-<%=chapter.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add a Section to <%= chapter.title %></h4>
         </div>
-        <%= simple_form_for [chapter.book,chapter,@new_sections[chapter.id]], remote: true do |f| %>
-            <%= f.input :title %>
-            <%= f.input :notes %>
-            <%= f.submit class: "btn btn-primary" %>
-        <% end %>          
-        
-        
-        
-      </div>      
+        <div class="modal-body">
+          <div class="alert alert-danger hidden" role="alert">
+            <%= t'flash_messages.sections.creation_failure' %>
+          </div>
+          <%= simple_form_for [chapter.book,chapter,@new_sections[chapter.id]], remote: true do |f| %>
+              <%= f.input :title %>
+              <%= f.input :notes %>
+              <%= f.submit class: "btn btn-primary" %>
+          <% end %>          
+          
+          
+          
+        </div>      
+      </div>
     </div>
   </div>
-</div>
+
+<% end %>

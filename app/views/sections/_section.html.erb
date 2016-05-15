@@ -5,7 +5,7 @@
     <%= link_to book_chapter_section_path(section.chapter.book, section.chapter,section), remote: true, class: "section-title" do %>
       <%= fa_icon 'bars' %>      
       <%= section.title %>
-      <% end %>
+      <% end  if  can? :read, section%>
     
   </div>
 

@@ -22,7 +22,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    authorize! :show, @book
+    authorize! :read, @book
     # flash.now[:success] = "This is a flash message success"
     # flash.now[:danger] = "This is a flash message failure"
     # flash.now[:notice] = "This is a notice flash message"

@@ -59,6 +59,30 @@ class Ability
         book.owner == user
     end
 
+    ###########
+    # Chapter #
+    ###########
+
+    can :manage, Chapter do |chapter|
+        chapter.book.owner == user
+    end
+
+    can :read, Chapter do |chapter|
+        user.contributing_to(chapter.book)
+    end
+
+    ###########
+    # Section #
+    ###########
+
+    can [:create, :destroy], Section do |section|
+        section.chapter.book.owner == user
+    end
+
+    can [:read, :update], Section do |section|
+        user.contributing_to(section.chapter.book)
+    end
+
 
   end
 end
