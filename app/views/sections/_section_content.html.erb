@@ -1,0 +1,63 @@
+<h3>
+  <%= @section.title %>
+    <small>
+      <em>in</em>
+      <%= @chapter.title %>
+      <%= link_to fa_icon('trash'), "#", class: "text-danger", data: {toggle: "modal", target: "#section-delete-confirmation-modal"} if can? :destroy, @section %>
+    </small>
+</h3>
+
+<%= @section.notes %>
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#section-preview" aria-controls="home" role="tab" data-toggle="tab">Preview</a></li>
+    <% if can? :update, @section %>
+      <li role="presentation"><a href="#section-edit" aria-controls="profile" role="tab" data-toggle="tab">Edit</a></li>
+    <% end %>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="section-preview">
+     <%= render 'sections/section_preview' %>     
+
+    </div>
+    <% if can? :update, @section %>
+      <div role="tabpanel" class="tab-pane" id="section-edit">
+        <%= simple_form_for [@book,@chapter,@section], remote: true do |f| %>        
+          <%= f.input :content %>
+          <%= f.submit %>
+          <% end %>
+      </div>
+    <% end %>
+    
+  </div>
+
+</div>
+
+<% if can? :destroy, @section %>
+  <!--Delete Section Modal confirmation-->
+  <div class="modal fade" id="section-delete-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Are you sure you want to delete the section?</h4>
+        </div>
+        <div class="modal-body">
+          <p>Please enter the title of section you want to delete and press submit</p>
+          <%= form_tag(book_chapter_section_path(@book,@chapter,@section), method: :delete, remote: true) do  %>
+            <%= text_field_tag(:title_confirm, "", class: "form-control") %>
+            <%= submit_tag("Confirm", class: "btn btn-danger") %>
+              
+          <% end %>
+            
+          ...
+        </div>      
+      </div>
+    </div>
+  </div>
+<% end %>

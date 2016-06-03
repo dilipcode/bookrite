@@ -1,0 +1,24 @@
+<% if @invitations.any? %>
+  <div id="authorship-invitations" class="well">
+    <h3>Authorship invitations pending your approval</h3>
+    <%= render @invitations %>    
+  </div>
+<% end %>
+
+
+<%= link_to "Add a book", new_book_path, class: "btn btn-primary pull-right" if can? :create, @new_book %>
+<h1>Select a book to contribute</h1>
+<div class="container-fluid">
+  <div class="row" id="books">
+    <% @books.each do |book| %>
+      <div id="book">
+        <h3><%= link_to book.title, book_path(book) %></h3>
+        
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+

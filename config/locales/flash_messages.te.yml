@@ -1,0 +1,18 @@
+te:
+  flash_messages:
+    books:
+      deletion_success: "పుస్తకం విజయవంతంగా తొలగించారు"
+      deletion_error: "పుస్తకం టైటిల్ సరిగా నమోదు చేయనందున తొలగించలేదు"
+      updation_success: "పుస్తకం విజయవంతంగా సవరించారు"
+    chapters:
+      deletion_failure: "చాప్టర్ లో  సెక్షన్లు వున్నాయి . ముందు సెక్షన్స్ తొలగించండి "
+    sections:
+      creation_failure: "సెక్షన్ సృష్టించలేదు "
+      deletion_success: "Section successfully deleted"
+      deletion_failure: "Section deletion failed, as you enterd incorrect title"
+    authorships:
+      non_existing_user: "No existing user .Please ask the author to sign up "
+      already_contributor: "This author is already contributing to book or pending acceptance"
+      invite_success: "User invited successfully"
+      accepted: "Invitation accepted"
+      rejected: "Not Interested"

@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
+  
+
+
+  get 'authorships/create'
+
+  authenticated :user do
+  root to: 'books#index', as: :authenticated_root
+  end
   root 'home#land'
+
+  devise_for :users
+
+  get 'translate' => 'home#translate', as: :translate
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -15,6 +27,13 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :books do
+    resources :chapters, only: [:create, :edit, :update, :destroy] do      
+      resources :sections, only: [:create, :show, :update, :edit, :destroy]
+    end
+    resources :authorships, only: [:create, :update, :destroy]
+  end
 
   # Example resource route with options:
   #   resources :products do

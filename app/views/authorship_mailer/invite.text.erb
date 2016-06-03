@@ -1,0 +1,7 @@
+Welcome to <%= APP_NAME %>, <%= @user.email %>
+===============================================
+ 
+<%= @authorship.invitor.email %> has invited you to coauthor the book <%= @authorship.book.title %>
+To accept the invitation, just follow this link: <%= link_to @url, @url %>.
+ 
+Thanks for joining and have a great day!
